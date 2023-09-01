@@ -1,0 +1,105 @@
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+  <c-container>
+    <c-row class="justify-content-center">
+      <c-col lg="7" md="9" xl="6">
+        <c-card class="mx-4">
+          <c-card-body class="p-4">
+            <form cForm [formGroup]="userForm">
+              <h1>Register</h1>
+              <p class="text-medium-emphasis">JHARKHAND RAKSHA SHAKTI UNIVERSITY</p>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilUser"></svg>
+                </span>
+                <input autoComplete="name" formControlName="regId" cFormControl placeholder="Registration Id" />
+              </c-input-group>
+              <div *ngIf="f.regId.touched && f.regId.invalid" class="alert alert-danger">
+                <div *ngIf="f.regId.errors.required">RegId is required.</div>
+            </div>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>@</span>
+                <input autoComplete="email" formControlName="email" cFormControl placeholder="Email" />
+              </c-input-group>
+              <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+                <div *ngIf="f.email.errors.required">Email is required.</div>
+                <div *ngIf="f.email.errors.email">Enter valid email.</div>
+            </div>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilLockLocked"></svg>
+                </span>
+                <input autoComplete="new-password" formControlName="password" cFormControl placeholder="Password" type="password" />
+              </c-input-group>
+              
+              <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger">
+                  <div *ngIf="f.password.errors.required">Password is required.</div>
+                  <div *ngIf="f.password.errors.minlength">Password must be at least 8 characters.</div>
+              </div>
+              <c-input-group class="mb-4">
+                <span cInputGroupText>
+                  <svg cIcon name="cilLockLocked"></svg>
+                </span>
+                <input autoComplete="new-password" formControlName="cpassword" cFormControl placeholder="Repeat password" type="password" />
+              </c-input-group>
+              <div *ngIf="f.cpassword.touched && f.cpassword.invalid || f.cpassword.touched && f.password.value !== f.cpassword.value" class="alert alert-danger">
+                  <div *ngIf="f.password.value !== f.cpassword.value">Password and confirm password donot match</div>
+                  <div *ngIf="f.cpassword.errors.minlength">Password must be at least 8 characters.</div>
+              </div>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilPeople"></svg>
+                </span>
+                <select cSelect id="inputGroupSelect01" formControlName="role" (change)="setRoleSelected()">
+                  <option [value]="0" [selected]="true" [disabled]="true">Select Role</option>
+                  <option *ngFor="let option of roles" [value]="option.id">
+                    {{option.roleName}}
+                  </option>
+                </select>
+              </c-input-group>
+              <div *ngIf="isRoleSelected">
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilNotes"></svg>
+                  </span>
+                  <select cSelect id="inputGroupSelect02" formControlName="department" (change)="setDepartmentSelected()">
+                    <option [value]="0" [selected]="true" [disabled]="true">Select Department</option>
+                    <option *ngFor="let option of departments" [value]="option.id">
+                      {{option.departmentName}}
+                    </option>
+                  </select>
+                </c-input-group>
+                <c-input-group class="mb-3" *ngIf="isDepartmentSelected">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilOptions"></svg>
+                  </span>
+                  <select cSelect id="inputGroupSelect03" formControlName="currentSemester">
+                    <option [value]="0" [selected]="true" [disabled]="true">Current Semester</option>
+                    <option *ngFor="let option of semesters" [value]="option.id">
+                      {{option.name}}
+                    </option>
+                  </select>
+                </c-input-group>
+              </div>
+              <div class="d-grid">
+                <button cButton color="success" 
+                [disabled]="!this.userForm.valid ||
+                              this.userForm.value.role ==='0' ||
+                              this.userForm.value.department ==='0' ||
+                              (isDepartmentSelected && this.userForm.value.currentSemester ==='0')" 
+                (click)="registerUser()">Register</button>
+              </div>
+            </form>
+            <c-col class="text-end mt-3" lg="12">
+              <button cButton class="px-0" color="link" routerLink="/login">
+                Already a user, Login!
+              </button>
+            </c-col>
+            <!-- <button [active]="true" cButton class="mt-3" color="" routerLink="/login">
+              Already a user, Login!
+            </button> -->
+          </c-card-body>
+        </c-card>
+      </c-col>
+    </c-row>
+  </c-container>
+</div>

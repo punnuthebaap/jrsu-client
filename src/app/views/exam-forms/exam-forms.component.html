@@ -1,0 +1,84 @@
+<c-card-body class="doCenter" *ngIf="this.isLoading">
+    <c-spinner></c-spinner>
+</c-card-body>
+
+<c-card class="p-4" *ngIf="onlyExam && !isLoading">
+    <c-row>
+      <c-col xs="12">
+        <c-card class="mb-4">
+          <c-card-header>
+            <strong>Exams Table</strong>
+          </c-card-header>
+          <c-card-body class="doCenter">
+            <c-spinner *ngIf="!this.isAllExam"></c-spinner>
+            <table striped="true" cTable *ngIf="this.isAllExam">
+                <thead cTableColor="dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Exam Name</th>
+                  <th scope="col">Exam Type</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">End Date</th>
+                  <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of this.dataSource;let i=index;">
+                  <th scope="row">{{ i+1 }}</th>
+                  <td>{{ item.examName }}</td>
+                  <td>{{ item.examType }}</td>
+                  <td>{{ item.starting_at | date }}</td>
+                  <td>{{ item.ending_at | date }}</td>
+                  <td *ngIf="this.role!=7"><button color="primary" (click)="viewExamApp(item)">View all applications</button></td>
+                  <td *ngIf="this.role==7"><button color="primary" (click)="applyForExams(item)">Apply for Exams</button></td>
+                </tr>
+                </tbody>
+              </table>          
+            </c-card-body>
+        </c-card>
+      </c-col>
+
+    </c-row>
+</c-card>
+
+
+<c-card class="p-4" *ngIf="!onlyExam && !isLoading">
+    <c-row>
+      <c-col xs="12">
+        <button  cButton class="mt-3" color="secondary" (click)="backToExamForms()">
+            Back to Exam Forms
+          </button>
+        <c-card class="mb-4">
+          <c-card-header>
+            <strong>{{ titleExamApplication }} | {{ titleExamType }}</strong>
+          </c-card-header>
+          <c-card-body class="doCenter">
+            <c-spinner *ngIf="!this.isAllExam"></c-spinner>
+            <table striped="true" cTable *ngIf="this.isAllExam">
+                <thead cTableColor="dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Exam Name</th>
+                  <th scope="col">Exam Type</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">End Date</th>
+                  <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of this.dataSource;let i=index;">
+                  <th scope="row">{{ i+1 }}</th>
+                  <td>{{ item.examName }}</td>
+                  <td>{{ item.examType }}</td>
+                  <td>{{ item.starting_at | date }}</td>
+                  <td>{{ item.ending_at | date }}</td>
+                  <td><button color="primary" (click)="viewExamApp(item)">View all applications</button></td>
+                </tr>
+                </tbody>
+              </table>          
+            </c-card-body>
+        </c-card>
+      </c-col>
+
+    </c-row>
+</c-card>

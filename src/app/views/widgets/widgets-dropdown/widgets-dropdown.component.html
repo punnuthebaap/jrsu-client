@@ -1,0 +1,75 @@
+<c-row *ngIf="role==8">
+  <c-col sm="6" xl="3">
+    <c-widget-stat-a
+      class="mb-4 mainBox"
+      color="primary"
+      title="Users"
+    >
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        {{ users }}
+        <span class="fs-6 fw-normal">
+           <svg cIcon name="cilPeople"></svg>
+        </span>
+      </ng-template>
+    </c-widget-stat-a>
+  </c-col>
+  <c-col sm="6" xl="3">
+    <c-widget-stat-a
+      title="Courses"
+      class="mb-4 mainBox"
+      color="info"
+    >
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        <span>{{ courses }}</span>
+        <span class="fs-6 fw-normal">
+          <svg cIcon name="cilNotes"></svg>
+        </span>
+      </ng-template>
+    </c-widget-stat-a>
+  </c-col>
+  <c-col sm="6" xl="3">
+    <c-widget-stat-a
+      title="No. of Exams"
+      class="mb-4 mainBox"
+      color="warning"
+    >
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        <span>{{ examForms }}</span>
+        <span class="fs-6 fw-normal">
+          <svg cIcon name="cilPuzzle"></svg>
+        </span>
+      </ng-template>
+    </c-widget-stat-a>
+  </c-col>
+</c-row>
+
+<c-row *ngIf="role==7">
+  <c-col sm="6" xl="3">
+    <c-widget-stat-a
+      class="mb-4 mainBox"
+      color="primary"
+      title="Subjects"
+    >
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        {{ totalSubjects }}
+        <span class="fs-6 fw-normal">
+           <svg cIcon name="cilPeople"></svg>
+        </span>
+      </ng-template>
+    </c-widget-stat-a>
+  </c-col>
+  <c-col sm="6" xl="3">
+    <c-widget-stat-a
+      title="Current Semester"
+      class="mb-4 mainBox"
+      color="info"
+    >
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        <span>{{ currentSemesterName}}</span>
+        <span class="fs-6 fw-normal">
+          <svg cIcon name="cilNotes"></svg>
+        </span>
+      </ng-template>
+    </c-widget-stat-a>
+  </c-col>
+</c-row>

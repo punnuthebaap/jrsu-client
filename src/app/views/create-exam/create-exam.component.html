@@ -1,0 +1,38 @@
+<form cForm [formGroup]="createExamForm">
+    <c-card class="p-4">
+        <c-row>
+            <c-col sm="6" xl="6">
+                <div class="mb-3">
+                    <label for="examName" class="mb-3">Exam Name</label>
+                    <input type="text" formControlName="examName" class="form-control" id="examName"  placeholder="Exam Name">
+                </div>
+            </c-col>
+            <c-col sm="6" xl="6">
+                <div class="mb-3">
+                    <label for="examType" class="mb-3">Exam Type</label>
+                    <select class="form-control" formControlName="examType" id="examType">
+                        <option value="1">End-Semester Examination</option>
+                        <option value="2">Special Examination</option>
+                    </select>
+                </div>
+            </c-col>
+            <c-col sm="6" xl="6">
+                <div class="mb-3">
+                    <label for="examType" class="mb-3">Starting Date</label>
+                    <input class="form-control" formControlName="startDate" type="date"  name="date-input" placeholder="date">
+                </div>
+            </c-col>
+            <c-col sm="6" xl="6">
+                <div class="mb-3">
+                    <label for="examType" class="mb-3">Ending Date</label>
+                    <input class="form-control" formControlName="endDate" type="date" name="date-input" placeholder="date">
+                </div>
+            </c-col>
+        </c-row>
+        <c-row>
+            <button [disabled]="!this.createExamForm.valid" cButton class="mt-3" color="primary" (click)="createExam()">
+                Create Exam 
+              </button>
+        </c-row>
+    </c-card>
+</form>
