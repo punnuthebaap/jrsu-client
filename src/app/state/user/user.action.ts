@@ -8,8 +8,8 @@ export namespace User {
         static readonly type = "[Login] Logout Flow Initiated";
       }
     }
-    // export class UserChangedFromAuth0SDK {
-    //   static readonly type = "[Auth0 SDK] User Changed";
-    //   constructor(public payload: { user: undefined }) {}
-    // }
+    export class UserNeedToBeUpdated {
+      static readonly type = "[UserNeedToBeUpdated] User Changed";
+      constructor(public payload: { user: undefined }) {}
+    }
 }

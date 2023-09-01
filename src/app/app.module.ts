@@ -42,7 +42,7 @@ import { AuthInterceptorService } from './guards/auth.interceptor';
 // using NGXS State
 import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
 import { NgxsModule } from '@ngxs/store';
-import { USER_PROVIDED_NGXS_EXECUTION_STRATEGY } from '@ngxs/store/src/execution/symbols';
+import { UserState } from "./state";
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -81,8 +81,7 @@ const APP_CONTAINERS = [
     NgScrollbarModule,
     HttpClientModule,
     FormsModule,
-    NgxsModule.forRoot([
-    ]),
+    NgxsModule.forRoot([UserState], { developmentMode: true }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
   ],
   providers: [
