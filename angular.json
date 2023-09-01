@@ -1,4 +1,6 @@
-{
+
+{ 
+  "COMMENT_BY_DEVELOPER":{"How to use":"When using pwa kindly copy the ngswConfigPath and paste it into after line no 49","ngswConfigPath": "ngsw-config.json"},
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
     "analytics": false
@@ -44,8 +46,7 @@
             "allowedCommonJsDependencies": [
               "chart.js"
             ],
-            "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json"
+            "serviceWorker": false
           },
           "configurations": {
             "production": {
