@@ -34,7 +34,7 @@ export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
 
   ngOnInit(): void {
     const user = this.state.getState();
-    console.log(user)
+    // console.log(user)
     this.role = user.details.role;
     if(this.role == 8){
       this.setCoursesCount();

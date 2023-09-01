@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StateService {
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   setState(token : string, LoginDetails: any){
     const state = {
@@ -22,6 +23,7 @@ export class StateService {
 
   removeState(){
     localStorage.removeItem('globalState');
+    this.route.navigate(['/login']);
   }
 
   isLoggedIn(){

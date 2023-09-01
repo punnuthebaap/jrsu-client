@@ -7,6 +7,9 @@ import { BasicService } from '../../../service/basic.service';
 import { StateService } from '../../../service/state.service';
 // importing sweetalert
 import Swal from 'sweetalert2';
+// using NGXS
+import { Store } from "@ngxs/store";
+import { User, UserState } from "src/app/state";
 
 @Component({
   selector: 'app-login',
@@ -14,11 +17,16 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  isAuthenticated$ = this.store.select(UserState.isLoggedIn);
+  user$ = this.store.select(UserState.user);
   loginForm: FormGroup | any;
   isLoading: boolean = false;
-  constructor(public route: Router, private basicService: BasicService, private stateService: StateService) { }
+  constructor(public route: Router, private basicService: BasicService, private stateService: StateService,
+              private store: Store) { }
 
 ngOnInit() {
+  
+  console.log(this.isAuthenticated$)
     this.loginForm = new FormGroup({
       regId : new FormControl('', [Validators.required]),
       password : new FormControl('', [Validators.required, Validators.minLength(8)])
@@ -42,11 +50,12 @@ ngOnInit() {
         this.showToaster('error', 'Log User', res.message? res.message : res.data);
       }
       else{
+        this.store.dispatch(new User.Auth.LoginFlowInitiated());
         this.stateService.setState(res.token,res.data);
         this.showToaster('success', 'Log User', "Logged in Successfully");
         this.navigateByRole(res.data.role);
       }
-    },(error) =>{
+    },(error: any) =>{
       // console.log(error);
       this.showToaster('error', 'Log User', error.error.message? error.error.message : error.error.data);
     },()=>{

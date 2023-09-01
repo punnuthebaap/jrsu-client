@@ -6,7 +6,9 @@ import { DepartmentService } from 'src/app/service/department.service';
 import { Router, RouterModule } from '@angular/router';
 
 import { ClassToggleService, HeaderComponent } from '@coreui/angular';
-
+// using NGXS
+import { Store } from "@ngxs/store";
+import { User } from "src/app/state";
 @Component({
   selector: 'app-default-header',
   templateUrl: './default-header.component.html',
@@ -20,7 +22,8 @@ export class DefaultHeaderComponent extends HeaderComponent {
   public newNotifications = new Array(5)
   departmentName: string = "";
   roleName: string = "";
-  constructor(private classToggler: ClassToggleService, 
+  constructor(private store: Store,
+              private classToggler: ClassToggleService, 
               public route: Router,
               // private basic: BasicService,
               private state: StateService,
@@ -40,8 +43,8 @@ export class DefaultHeaderComponent extends HeaderComponent {
   }
 
   logout(){
+    this.store.dispatch(new User.Auth.LogoutFlowInitiated());
     this.state.removeState();
-    this.route.navigate(['/login']);
   }
 
   getDeptName(id: any) {

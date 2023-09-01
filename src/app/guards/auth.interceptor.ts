@@ -13,19 +13,18 @@ import { Router } from '@angular/router';
 @Injectable()
 
 export class AuthInterceptorService implements HttpInterceptor {
-    constructor(private route: Router){}
+    constructor(private route: Router, private stateService:StateService){}
      intercept(req: HttpRequest<any>, next: HttpHandler) {
-        console.log('intercepting every req');
         return next.handle(req)
         .pipe(
             tap(event => {
                 if (event instanceof HttpResponse){
-                    console.log("badhiyan")
+                    console.log("Intercepting HTTP request by the punnu__")
                     }
                 }, error => {
                     if(error.status === 403){
                         alert("Token Expired, logging out");
-                        this.route.navigate(['login']);
+                        this.stateService.removeState();
                     }
                     if(error.status === 404){
                         this.route.navigate(['404']);

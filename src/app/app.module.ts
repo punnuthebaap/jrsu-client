@@ -39,6 +39,10 @@ import {
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from './guards/auth.interceptor';
+// using NGXS State
+import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
+import { NgxsModule } from '@ngxs/store';
+import { USER_PROVIDED_NGXS_EXECUTION_STRATEGY } from '@ngxs/store/src/execution/symbols';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -75,8 +79,11 @@ const APP_CONTAINERS = [
     ListGroupModule,
     CardModule,
     NgScrollbarModule,
-    FormsModule,
     HttpClientModule,
+    FormsModule,
+    NgxsModule.forRoot([
+    ]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
   ],
   providers: [
     {
